@@ -64,8 +64,8 @@ TEST_OPTS =
 REGRESS =
 
 HARD=
-DEFERRABLE=1
-OPTIONAL=1
+DEFERRABLE?=1
+OPTIONAL?=1
 
 # Run target/rule within docker image for the implementation
 DOCKERIZE =
@@ -358,3 +358,8 @@ $(eval $(call recur_template,clean,$(call recur_impls_,clean)))
 
 # recursive dist
 $(eval $(call recur_template,dist,$(call recur_impls_,dist)))
+
+# copy my impl binaries to impls/elh
+.PHONY: mal-go
+mal-go:
+	(cd ../mal-go; make bin) && (cp ../mal-go/bin/* impls/elh)

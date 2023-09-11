@@ -1,0 +1,4 @@
+# Ignore everything except these runner files. The mal lisp impl is copied in
+*
+!.gitignore
+!run
