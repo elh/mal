@@ -61,7 +61,7 @@ TEST_OPTS =
 # Test with previous test files not just the test files for the
 # current step. Step 0 and 1 tests are special and not included in
 # later steps.
-REGRESS =
+REGRESS?=0
 
 HARD=
 DEFERRABLE?=1
@@ -360,6 +360,6 @@ $(eval $(call recur_template,clean,$(call recur_impls_,clean)))
 $(eval $(call recur_template,dist,$(call recur_impls_,dist)))
 
 # copy my impl binaries to impls/elh
-.PHONY: mal-go
-mal-go:
-	(cd ../mal-go; make bin) && (cp ../mal-go/bin/* impls/elh)
+.PHONY: elh
+elh:
+	(cd ../mal-arkey; make bin) && (cp ../mal-arkey/bin/* impls/elh)
