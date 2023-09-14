@@ -360,6 +360,14 @@ $(eval $(call recur_template,clean,$(call recur_impls_,clean)))
 $(eval $(call recur_template,dist,$(call recur_impls_,dist)))
 
 # copy my impl binaries to impls/elh
-.PHONY: elh
-elh:
+.PHONY: mine
+mine:
 	(cd ../mal-arkey; make bin) && (cp ../mal-arkey/bin/* impls/elh)
+
+.PHONY: t
+t:
+	REGRESS=1 OPTIONAL=0 DEFERRABLE=0 make "test^elh^step${STEP}" | clz '[0-9]*[1-9]+[0-9]*: .*failing tests' red | clz 'FAIL' red
+
+.PHONY: short
+short:
+	REGRESS=1 OPTIONAL=0 DEFERRABLE=0 make "test^elh^step${STEP}" | grep -E "failing|passing tests|total tests|test file:" | clz '[0-9]*[1-9]+[0-9]*: .*failing tests' red

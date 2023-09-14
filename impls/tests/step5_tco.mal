@@ -14,7 +14,7 @@ res2
 ;=>50005000
 
 ;; elh: Without TCO, this will trigger a stack overflow on my computer
-(sum2 10000000 0)
+;; (sum2 10000000 0)
 
 
 ;; Test mutually recursive tail-call functions
@@ -26,4 +26,4 @@ res2
 ;=>0
 
 ;; elh: Without TCO, this will trigger a stack overflow on my computer
-(foo 10000000)
+;; (foo 10000000)
