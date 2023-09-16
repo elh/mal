@@ -371,3 +371,11 @@ t:
 .PHONY: short
 short:
 	REGRESS=1 OPTIONAL=0 DEFERRABLE=0 make "test^elh^step${STEP}" | grep -E "failing|passing tests|total tests|test file:" | clz '[0-9]*[1-9]+[0-9]*: .*failing tests' red
+
+.PHONY: self-host-t
+self-host-t:
+	REGRESS=1 OPTIONAL=0 DEFERRABLE=0 make MAL_IMPL=elh "test^mal^step${STEP}" | clz '[0-9]*[1-9]+[0-9]*: .*failing tests' red | clz 'FAIL' red
+
+.PHONY: self-host-short
+self-host-short:
+	REGRESS=1 OPTIONAL=0 DEFERRABLE=0 make MAL_IMPL=elh "test^mal^step${STEP}" | grep -E "failing|passing tests|total tests|test file:" | clz '[0-9]*[1-9]+[0-9]*: .*failing tests' red
